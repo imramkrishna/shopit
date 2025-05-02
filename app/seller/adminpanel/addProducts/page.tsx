@@ -18,7 +18,7 @@ const Page = () => {
         productDimension: ""
     })
     const handleSubmit = async (e: any) => {
-        e.preventDefault();
+       e.preventDefault();
        console.log(productData)
        setAddNewProduct(false)
     }
@@ -286,5 +286,5 @@ const Page = () => {
     if (loading) return <p>Loading...</p>
 }
 
-// Make sure this export is at the bottom of the file, not inside any conditional blocks
+
 export default Page

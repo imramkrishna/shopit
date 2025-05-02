@@ -58,7 +58,7 @@ const Navbar = () => {
           </div>
         )
       }
-      <nav className="flex min-h-screen w-full">
+      <nav className="flex fixed top-0 right-0 left-0 min-h-screen w-full">
         <header className="h-14 fixed  bg-[#2c3e50]  w-full flex justify-between items-center">
           <div className="logo flex w-[25%] md:w-[20%] items-center">
             <Image
