@@ -25,7 +25,7 @@ const Page = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3001/seller/login", formData);
+      const response = await axios.post("https://sopitbackend.onrender.com/seller/login", formData);
       console.log(response.data);
       if (response.status === 202) {
          

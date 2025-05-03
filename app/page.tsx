@@ -3,12 +3,15 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 
 export default function Home() {
-  const [products, setProducts] = useState<any[]>([]);
+  const [products, setProducts] = useState<any[]|null>(null);
   const [featuredProducts, setFeaturedProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [cartItems,setCartItems]=useState([])
 
   async function fetchApi() {
+    setProducts(null);
     try {
+      
       const response = await axios.get("https://sopitbackend.onrender.com/seller/productList");
       if (Array.isArray(response.data)) {
         console.log("Response is in Array of length ", response.data.length);
@@ -36,6 +39,7 @@ export default function Home() {
 
   useEffect(() => {
     fetchApi();
+    
   }, []);
 
   return (
@@ -48,9 +52,9 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4">
           <h1 className="text-2xl font-bold my-4">Products</h1>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {featuredProducts.map(product => (
+            {featuredProducts.map((product,index) => (
               product && (
-                <div key={product._id} className="border rounded-lg overflow-hidden shadow hover:shadow-md transition-all duration-300 flex flex-col">
+                <div key={index} className="border rounded-lg overflow-hidden shadow hover:shadow-md transition-all duration-300 flex flex-col">
                   {/* Product Image */}
                   <div className="h-48 overflow-hidden bg-gray-100">
                     {product.productImages ? (
@@ -71,6 +75,7 @@ export default function Home() {
                   
                   {/* Product Details */}
                   <div className="p-4 flex-grow">
+                  <h3 className="font-semibold text-lg mb-1 line-clamp-2">{product._id}</h3>
                     <h3 className="font-semibold text-lg mb-1 line-clamp-2">{product.productName}</h3>
                     <p className="text-teal-600 font-bold text-xl mb-2">₹{product.productPrice}</p>
                     {product.productBrand && (
@@ -93,7 +98,7 @@ export default function Home() {
                     
                     <button 
                       className="w-full border border-teal-600 text-teal-600 hover:bg-teal-50 py-2 rounded transition-colors flex items-center justify-center gap-2"
-                      onClick={() => {/* Add to cart logic */}}
+                      onClick={() => setCartItems(product)}
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />

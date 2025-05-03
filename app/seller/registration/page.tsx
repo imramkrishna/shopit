@@ -94,7 +94,7 @@ const SellerRegistration = () => {
       // This would be where you'd send the form data to your backend
       
       console.log(formData)
-      await axios.post("http://localhost:3001/seller/register",formData);
+      await axios.post("https://sopitbackend.onrender.com/seller/register",formData);
       console.log("Form submitted successfully");
       
       
