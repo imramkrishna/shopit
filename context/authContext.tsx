@@ -10,7 +10,7 @@ interface AuthContextType{
   user:User | null;
   login:(userData:User)=>void;
   logout:()=>void;
-  loading:boolean
+  loading:boolean;
 }
 interface Props{
   children:ReactNode

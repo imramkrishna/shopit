@@ -16,6 +16,7 @@ export const CartProvider=({children}:Props)=>{
     const[cartItems,setCartItems]=useState<ItemType[]>([])
     const addToCart=(product:ItemType)=>{
         setCartItems(prevItems=>[...prevItems,product])
+        console.log("new item added to cart.")
     }
     const removeFromCart=(product:ItemType)=>{
         setCartItems(prevItems=>
