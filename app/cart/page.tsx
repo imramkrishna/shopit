@@ -1,18 +1,19 @@
 "use client"
 import React, { useEffect } from 'react'
-import { useCart } from '@/context/cartContext'
-
 const page = () => {
-     const {cartItems}=useCart();
-     console.log(cartItems)
+     useEffect(()=>{
+      const cartItems=localStorage.getItem("cartItems")
+      if(cartItems){
+      const item=JSON.parse(cartItems)
+      console.log("Cart Items are : ",cartItems)
+      console.log(cartItems.length)
+      }
+      return;
+     })
+    
+     
   return (
     <div>
-        {cartItems.map((index,item)=>(
-            <div>
-                {item}
-            </div>
-        ))}
-      
     </div>
   )
 }
