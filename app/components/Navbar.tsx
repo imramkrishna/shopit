@@ -61,13 +61,14 @@ const Navbar = () => {
       {/* only header fixed */}
       <header className="fixed top-0 left-0 right-0 h-14 bg-[#2c3e50] z-20 flex justify-between items-center">
         <div className="logo flex w-[25%] md:w-[20%] items-center">
+          <Link href="/">
           <Image
             src="/logoshop.png"
             alt="ShopIt"
             width={150}
             height={100}
             className="object-contain pointer"
-          />
+          /></Link>
         </div>
         <div className="Search flex md:w-[50%] w-[75%] items-center">
           <form className="w-full flex h-10" onSubmit={handleSearch}>
@@ -82,7 +83,7 @@ const Navbar = () => {
         <div className="hamburger text-slate-400 md:hidden text-2xl mx-2" onClick={() => setIsHamBurgerOpen(!isHamBurgerOpen)}>{isHamBurgerOpen ? <GiHamburgerMenu /> : <RxCross1 />}</div>
         <div className="accounts text-[#ddd2d2] hidden md:w-[30%] md:flex md:justify-evenly">
 
-          <p className=" flex gap-2 pointer"><span className="text-2xl"><FaShoppingCart /></span><span className="text-md">Cart</span></p>
+          <Link href="/cart"><p className=" flex gap-2 pointer"><span className="text-2xl"><FaShoppingCart /></span><span className="text-md">Cart</span></p></Link>
           <p className="flex gap-2 pointer"><span className="text-2xl"><CgProfile /></span><span className="text-md">Profile</span></p>
         </div>
       </header>

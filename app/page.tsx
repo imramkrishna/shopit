@@ -96,7 +96,7 @@ export default function Home() {
                       className="w-full border border-teal-600 text-teal-600 hover:bg-teal-50 py-2 rounded transition-colors flex items-center justify-center gap-2"
                       onClick={() => {
                         try {
-                          addToCart(product)
+                          addToCart(product._id)
                           
                         } catch(e) {
                           console.log("Error while adding to cart", e)
