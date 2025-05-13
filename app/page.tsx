@@ -2,8 +2,10 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
 import { useCart } from "@/context/cartContext";
-
+import { useRouter } from "next/navigation";
+import ProductCarousel from "./components/ProductCarousel";
 export default function Home() {
+  const router=useRouter();
   const {addToCart,removeFromCart,cartItems}=useCart();
   const [products, setProducts] = useState<any[]|null>(null);
   const [featuredProducts, setFeaturedProducts] = useState<any[]>([]);
@@ -36,19 +38,24 @@ export default function Home() {
       setLoading(false);
     }
   }
+  const viewDetails=async(p:[])=>{
+    localStorage.setItem("product",JSON.stringify(p));
+    window.open("/viewDetails","_blank")
+  }
 
   useEffect(() => {
     fetchApi();
   }, []);
 
   return (
-    <main className="pt-16">
+    <main className="pt-20 bg-slate-200 overflow-y-auto">
       {loading ? (
         <div className="flex justify-center items-center h-32">
           <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-teal-500"></div>
         </div>
       ) : (
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-7xl my-6 mx-auto px-4 ">
+          <ProductCarousel/>
           <h1 className="text-2xl font-bold my-4">Products</h1>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {featuredProducts.map((product,index) => (
@@ -83,7 +90,7 @@ export default function Home() {
                   <div className="p-4 pt-0 space-y-2">
                     <button 
                       className="w-full bg-teal-600 hover:bg-teal-700 text-white py-2 rounded transition-colors flex items-center justify-center gap-2"
-                      onClick={() => {/* Add view details logic */}}
+                      onClick={() => (viewDetails(product))}
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
