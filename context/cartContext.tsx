@@ -28,13 +28,14 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       if (prev.includes(id)) return prev
       return [...prev, id]
     })
-    console.log(cartItems)
+    alert("New Item added to cart")
   }
 
   const removeFromCart = async (id: string) => {
     setCartItems(prev => prev.filter(itemId => itemId !== id))
     await localStorage.setItem("cartItems",JSON.stringify(cartItems))
     const items=localStorage.getItem("cartItems")
+    
   }
 
   return (
