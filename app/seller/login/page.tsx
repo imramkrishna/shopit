@@ -12,8 +12,8 @@ import { useAuth } from '@/context/authContext';
 const Page = () => {
   const {login}=useAuth()
   const [formData, setFormData] = useState({
-    email: "",
-    phone: ""
+    email: "john.doe@example.com",
+    phone: "1234567890"
   })
   const handleChange = async (e: any) => {
     const { name, value } = e.target;
